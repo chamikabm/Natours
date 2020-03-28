@@ -86,60 +86,53 @@ body {
     opacity: 1;
     transform: translate(0); } }
 
-.btn:link,
-.btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  display: inline-block;
-  border-radius: 10rem;
-  transition: all .2s;
-  position: relative;
-  font-size: 1.6rem; }
-
-.btn:hover {
-  transform: translateY(-3px);
+.btn {
   /*
-  box-shadow: none|horizontal-offset(x) vertical-offset(y) blur spread color |inset|initial|inherit;box-shadow:
-  */
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+   - Active pseudo class always comes after the
+     `hover` pseudo class.
 
-/*
- - Active pseudo class always comes after the
-   `hover` pseudo class.
-
- - Active pseudo class appears when a user click
-   the link(<a> element) or the button.
- */
-.btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
-
-.btn::after {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  border-radius: 10rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  transition: all .4s; }
-
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0; }
-
-.btn-white {
-  background-color: #fff;
-  color: #777; }
-
-.btn-white::after {
-  background-color: #fff; }
-
-.btn-animated {
-  animation: moveInBottom .5s ease-out .75s;
-  /* .75s is the animation start delay. */
-  animation-fill-mode: backwards;
-  /* Apply moveInBottom 0% styles before animation starts, thus cases to make invisible the button before the animation starts. */ }
+   - Active pseudo class appears when a user click
+     the link(<a> element) or the button.
+   */ }
+  .btn:link, .btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all .2s;
+    position: relative;
+    font-size: 1.6rem; }
+  .btn:hover {
+    transform: translateY(-3px);
+    /*
+    box-shadow: none|horizontal-offset(x) vertical-offset(y) blur spread color |inset|initial|inherit;box-shadow:
+    */
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+    .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0; }
+  .btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+  .btn::after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s; }
+  .btn-white {
+    background-color: #fff;
+    color: #777; }
+    .btn-white::after {
+      background-color: #fff; }
+  .btn-animated {
+    animation: moveInBottom .5s ease-out .75s;
+    /* .75s is the animation start delay. */
+    animation-fill-mode: backwards;
+    /* Apply moveInBottom 0% styles before animation starts, thus cases to make invisible the button before the animation starts. */ }
