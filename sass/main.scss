@@ -4,6 +4,7 @@ $color-primary-dark: #28b485;
 
 $color-grey-dark: #777;
 $color-white: #fff;
+$color-black: #000;
 
 *,
 *::after,
@@ -37,50 +38,51 @@ body {
   background-position: top;
   position: relative;
   clip-path: polygon(0 0,100% 0,100% 75vh,0 100%);
+
+  // Following is same as .header__logo-box
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
 }
 
-.logo__box {
-  position: absolute;
-  top: 4rem;
-  left: 4rem;
-}
-
-.logo {
-  height: 3.5rem;
-}
-
-.text__box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.heading__primary {
+.heading-primary {
   color: $color-white;
   text-transform: uppercase;
   backface-visibility: hidden; /* Used to fix the shaking issue in animations in child elements. */
   margin-bottom: 6rem;
-}
 
-.heading__primary-main {
-  display: block;
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
-  animation-name: moveInLeft;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  /*animation-delay: 3s;*/
-}
+  &--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    /*animation-delay: 3s;*/
+  }
 
-.heading__primary-sub {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.75rem;
-  animation: moveInRight 1s ease-out;
+  &--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation: moveInRight 1s ease-out;
+  }
 }
 
 @keyframes moveInLeft {
@@ -144,7 +146,7 @@ body {
   /*
   box-shadow: none|horizontal-offset(x) vertical-offset(y) blur spread color |inset|initial|inherit;box-shadow:
   */
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+  box-shadow: 0 1rem 2rem rgba($color-black, .2);
 }
 
 /*
@@ -156,7 +158,7 @@ body {
  */
 .btn:active {
   transform: translateY(-1px);
-  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+  box-shadow: 0 .5rem 1rem rgba($color-black, .2);
 }
 
 .btn::after {
