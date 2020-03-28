@@ -62,6 +62,7 @@ body {
 .heading__primary {
     color: white;
     text-transform: uppercase;
+    backface-visibility: hidden; /* Used to fix the shaking issue in animations in child elements. */
 }
 
 .heading__primary-main {
@@ -70,7 +71,9 @@ body {
     font-weight: 400;
     letter-spacing: 3.5rem;
     animation-name: moveInLeft;
-    animation-duration: 3s;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    /*animation-delay: 3s;*/
 }
 
 .heading__primary-sub {
@@ -78,6 +81,7 @@ body {
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: 2rem;
+    animation: moveInRight 1s ease-out;
 }
 
 @keyframes moveInLeft {
@@ -88,6 +92,22 @@ body {
 
     80% {
         transform: translateX(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    80% {
+        transform: translateX(-10px);
     }
 
     100% {
