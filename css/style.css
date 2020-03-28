@@ -40,7 +40,7 @@ body {
   text-align: center; }
 
 .heading__primary {
-  color: white;
+  color: #fff;
   text-transform: uppercase;
   backface-visibility: hidden;
   /* Used to fix the shaking issue in animations in child elements. */
@@ -137,11 +137,11 @@ body {
   opacity: 0; }
 
 .btn-white {
-  background-color: white;
-  color: #777777; }
+  background-color: #fff;
+  color: #777; }
 
 .btn-white::after {
-  background-color: white; }
+  background-color: #fff; }
 
 .btn-animated {
   animation: moveInBottom .5s ease-out .75s;
