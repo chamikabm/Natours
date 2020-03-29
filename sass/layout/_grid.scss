@@ -1,7 +1,7 @@
 .row {
   //width: 1140px;
   max-width: $grid-width;
-  background-color: #eee;
+  //background-color: #eee;
   margin: 0 auto; // Trick used to center block elements inside another block element.
 
   &:not(:last-child) { // For everything except the list item.
@@ -16,7 +16,7 @@
   // (*) - used to indicate any attribute name contains
   // ($) - used to indicate any attribute name ends with
   [class^="col-"] { // Select class starts with "col-" attribute name. (i.e: [col-]1-of-3)
-    background-color: orange;
+    //background-color: orange;
     float: left;
 
     &:not(:last-child) { // For everything except the list item.
