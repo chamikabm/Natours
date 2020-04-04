@@ -13,6 +13,12 @@
     left: 0;
     width: 100%;
     backface-visibility: hidden; // When rotates this will not show the backside.
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 40px rgba(0,0,0, .15);
+
+    // This is used to hide the image overflows by picture images.
+    // Otherwise images will go out of the beyond defined 'border-radius' value.
+    overflow: hidden;
 
     &--front {
       background-color: $color-white;
@@ -42,10 +48,33 @@
   }
 
   &:hover &__side--front {  //.card:hover .card__side--front {
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
   }
 
   &:hover &__side--back {
     transform: rotateY(0);
+  }
+
+  // Front side styling.
+  &__picture {
+    background-size: cover;
+    height: 23rem;
+    background-blend-mode: screen; // This is a new featuer, will not work in IE, Edge browsers.
+    -webkit-clip-path: polygon(0 0 , 100% 0, 100% 85%, 0 100%); // Chrome, Safari
+    clip-path: polygon(0 0 , 100% 0, 100% 85%, 0 100%); // Firefox
+
+    &--1 {
+      background-image: linear-gradient(to right bottom,
+              $color-secondary-light,
+              $color-secondary-dark), url('../img/nat-5.jpg')
+    }
+
+    &--2 {
+      background-image: url('../img/nat-5.jpg')
+    }
+
+    &--3 {
+      background-image: url('../img/nat-5.jpg')
+    }
   }
 }
