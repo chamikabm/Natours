@@ -63,6 +63,12 @@
     -webkit-clip-path: polygon(0 0 , 100% 0, 100% 85%, 0 100%); // Chrome, Safari
     clip-path: polygon(0 0 , 100% 0, 100% 85%, 0 100%); // Firefox
 
+    // We need to set the border here explicitly even though we have set the
+    // .card__side border-radius as 3px, above clip-path conflicts border-radius and
+    // overflow: hidden in .card__side.
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+
     &--1 {
       background-image: linear-gradient(to right bottom,
               $color-secondary-light,
