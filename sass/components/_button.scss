@@ -1,6 +1,7 @@
 
 .btn {
 
+  &, // This to pure btn styles.
   &:link,
   &:visited {
     text-transform: uppercase;
@@ -11,6 +12,10 @@
     transition: all .2s;
     position: relative;
     font-size: $default-font-size;
+
+    // Changes for the <button> element
+    border: none;
+    cursor: pointer;
   }
 
 
@@ -34,7 +39,9 @@
    - Active pseudo class appears when a user click
      the link(<a> element) or the button.
    */
+  &:focus,  // For the <button> element
   &:active {
+    outline: none;
     transform: translateY(-1px);
     box-shadow: 0 .5rem 1rem rgba($color-black, .2);
   }

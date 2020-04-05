@@ -16,6 +16,7 @@
     border-bottom: 3px solid transparent;
     width: 90%;
     display: block;
+    transition: all .3s; // This enables the input focus animations.
 
     &:focus {
       outline: none;
@@ -48,5 +49,53 @@
     opacity: 0;
     transform: translateY(-4rem);
     visibility: hidden;
+  }
+
+  &__radio-group {
+    width: 49%;
+    display: inline-block;
+  }
+
+  &__radio-input {
+    display: none;
+  }
+
+  &__radio-label {
+    font-size: $default-font-size;
+    cursor: pointer;
+    position: relative;
+    padding-left: 4.5rem;
+  }
+
+  &__radio-button {
+    height: 3rem;
+    width: 3rem;
+    border: 5px solid $color-primary;
+    border-radius: 50%; // Used to make a circle.
+    display: inline-block; // Required this to work above border-radius: 50%;
+    position: absolute;
+    top: -.4rem;
+    left: 0;
+
+    &::after {
+      content: '';
+      height: 1.3rem;
+      width: 1.3rem;
+      display: block;
+      border-radius: 50%; // Used to make a circle.
+      position: absolute; // Parent position also absolute, but that's fine, it just has to be defined.
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $color-primary;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+  }
+
+  // We can use Selector "+" instead of "~", but here showing different way of achieving that same thing.
+  // Selector "~" used to select any element that is after the first indicated element.
+  &__radio-input:checked ~ &__radio-label &__radio-button::after {
+    opacity: 1;
   }
 }
