@@ -7,6 +7,12 @@
   background-color: rgba($color-black, .8);
   z-index: 9999;
 
+  // Initial state to help animate.
+  opacity: 0;
+  visibility: hidden;
+
+  transition: all .3s;
+
   &__content  {
     @include absCenter;
     width: 75%;
@@ -14,10 +20,18 @@
     box-shadow: 0 2rem 4rem rgba($color-black, .2);
     border-radius: 3px;
     overflow: hidden; // This will be used to hide the overflowed image from above border radius.
+    transition: translate .4s .2s; // Last .2s is the delay
 
     // We use are simulating a table without floats in order to keep both left and
     // right sections heights are same.
     display: table;
+
+    // Initial state to help animate.
+    opacity: 0;
+    // We have to include translate(-50%, -50%) into initial state, because having only one
+    // transform [i.e : scale(.5)] will overrider the translate(-50%, -50%) transform
+    // in the "absCenter" mixin. Hence we need to include that as well.
+    transform: translate(-50%, -50%) scale(.25); // We have to include the
   }
 
   &__left {
@@ -64,5 +78,38 @@
     -webkit-hyphens: auto; // Chrome
     -ms-hyphens: auto; // Edge
     hyphens: auto;
+  }
+
+
+  // When url changes to target element (i.e : http://127.0.0.1:8080/#popup)
+  // When the popup becomes target
+  &:target {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  // When the popup becomes target select content
+  &:target &__content {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &__close {
+    &:link,
+    &:visited {
+      color: $color-grey-dark;
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      font-size: 3rem;
+      text-decoration: none;
+      display: inline-block;
+      line-height: 1;
+    }
+
+    &:hover,
+    &:active {
+      color: $color-primary;
+    }
   }
 }
