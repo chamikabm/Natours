@@ -94,7 +94,7 @@
   }
 
   // We can use Selector "+" instead of "~", but here showing different way of achieving that same thing.
-  // Selector "~" used to select any element that is after the first indicated element.
+  // Selector "~" used to select any element with the indicated class that is after the first indicated element.
   &__radio-input:checked ~ &__radio-label &__radio-button::after {
     opacity: 1;
   }

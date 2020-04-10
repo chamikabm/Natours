@@ -13,6 +13,8 @@
     right: 6rem;
     z-index: 2000;
     box-shadow: 0 1rem 3rem rgba($color-black, .1);
+    text-align: center;
+    cursor: pointer;
   }
 
   &__background {
@@ -86,12 +88,76 @@
     }
   }
 
+  // Select background element when the check box is checked.
+  // Selector "~" used to select any element with the indicated class that is after the first indicated element.
+  // Button animation.
   &__checkbox:checked ~ &__background {
     transform: scale(80);
   }
 
+  // Select nav element when the check box is checked.
   &__checkbox:checked ~ &__nav {
     opacity: 1;
     width: 100%;
+  }
+
+  // Button icon.
+  &__icon {
+    position: relative;
+    margin-top: 3.5rem;
+
+    &,
+    &::before,
+    &::after {
+      width: 3rem;
+      height: 2px;
+      background-color: $color-grey-dark-3;
+      display: inline-block;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      transition: all .2s;
+    }
+
+    &::before {
+      top: -.8rem;
+    }
+
+    &::after {
+      top: .8rem;
+    }
+  }
+
+  // Select icon before element when button hover.
+  &__button:hover &__icon::before {
+    top: -1rem;
+  }
+
+  // Select icon after element when button hover.
+  &__button:hover &__icon::after {
+    top: 1rem;
+  }
+
+  // Select icon when the check box is checked.
+  // Select adjacent sibling ('+')
+  &__checkbox:checked + &__button &__icon {
+    // Used to hide the element, while keeping before and after elements not affecting.
+    // Since  before and after elements depends on this element we can't hide or set
+    // width to 0;
+    background-color: transparent;
+  }
+
+  &__checkbox:checked + &__button &__icon::before {
+    top: 0;
+    transform: rotate(135deg);
+  }
+
+  &__checkbox:checked + &__button &__icon::after {
+    top: 0;
+    transform: rotate(-135deg);
   }
 }
