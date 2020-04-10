@@ -1,3 +1,21 @@
+/*
+  Approach : Desktop first:
+  ------------------------
+
+  0-600px     :-  Phones
+  600-900px   :-  Tablet Portrait Mode Devices
+  900-1200px  :-  Tablet Landscape Mode Devices
+  1200-1800px :-  Desktops [** Normal Style Applies]
+  1800px +    :-  Big Desktops
+ */
+/*
+ Instated of creating one by one for each of the screen size break points as above
+ (i.e respond-phone, respond-tab-port etc), We can write a single mixin as follow
+ to accept the screen size as an argument then handle the passed contents based on that
+ value.
+
+ $breakpoint [phone, tab-port, tab-land, big-desktop ]
+ */
 @keyframes moveInLeft {
   0% {
     opacity: 0;
@@ -35,6 +53,12 @@
 
 html {
   font-size: 62.5%; }
+  @media (max-width: 600px) {
+    html {
+      font-size: 38%; } }
+  @media (max-width: 900px) {
+    html {
+      font-size: 48%; } }
 
 body {
   box-sizing: border-box; }

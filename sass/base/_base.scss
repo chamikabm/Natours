@@ -12,6 +12,21 @@
 html {
   // This defines what is 1 rem is. 62.5% --> 1rem -> 10px
   font-size: 62.5%;
+
+  //@include respond-phone {
+  //  font-size: 50%;
+  //}
+  // Without doing like this we use the follow commong manger to generate media queries
+  // Based on the passed screen type. (i.e 'phone')
+
+  @include respond(phone) {
+    font-size: 38%;
+  }
+
+  //@include respond('tab-port') { - This also works and correct.
+  @include respond(tab-port) {
+    font-size: 48%;
+  }
 }
 
 body {
