@@ -49,6 +49,9 @@
  1em = 16px
  i.e: 600/16 = 37.5em
 
+ STYLE CHANGE ORDER:
+  base + typography --> general layout + grid --> page layout --> components
+
  $breakpoint [phone, tab-port, tab-land, big-desktop ]
  */
 @mixin respond($breakpoint) {
@@ -61,7 +64,7 @@
   }
 
   @if $breakpoint == tab-port {
-    @media (max-width: 56.25px) { // 900px
+    @media (max-width: 56.25em) { // 900px
       @content // This '@content' allows us to pass content to this mixin.
     }
   }
