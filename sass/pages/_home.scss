@@ -2,6 +2,10 @@
   background-color: $color-grey-light-1;
   padding: 25rem 0;
   margin-top: -20vh; // (header -> height)95vh - (header-clip path)75vh
+
+  @include respond(tab-port) {
+    padding: 20rem 0;
+  }
 }
 
 .section-features {
@@ -13,6 +17,10 @@
   url('../../img/nat-4.jpg');
   transform: skewY(-7deg);
   margin-top: -10rem;
+
+  @include respond(tab-port) {
+    padding: 10rem 0;
+  }
 
   // > Use Select direct child elements
   // * Use to indicate all
@@ -26,11 +34,19 @@
   background-color: $color-grey-light-1;
   padding: 25rem 0 15rem 0;
   margin-top: -10rem;
+
+  @include respond(tab-port) {
+    padding: 20rem 0 10rem 0;
+  }
 }
 
 .section-stories {
   padding: 15rem 0;
   position: relative;
+
+  @include respond(tab-port) {
+    padding: 10rem 0;
+  }
 }
 
 .section-book {
@@ -38,6 +54,10 @@
   background-image: linear-gradient(to right bottom,
   $color-primary-light,
   $color-primary-dark);
+
+  @include respond(tab-port) {
+    padding: 10rem 0;
+  }
 }
 
 .book {
