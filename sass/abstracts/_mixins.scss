@@ -43,24 +43,31 @@
  to accept the screen size as an argument then handle the passed contents based on that
  value.
 
+
+ For the media quarries we use "em", because some browsers "rem" does not work well.
+
+ 1em = 16px
+ i.e: 600/16 = 37.5em
+
  $breakpoint [phone, tab-port, tab-land, big-desktop ]
  */
 @mixin respond($breakpoint) {
 
   @if $breakpoint == phone {
-    @media (max-width: 600px) {
+
+    @media (max-width: 37.5em) { // 600px
       @content // This '@content' allows us to pass content to this mixin.
     }
   }
 
   @if $breakpoint == tab-port {
-    @media (max-width: 900px) {
+    @media (max-width: 56.25px) { // 900px
       @content // This '@content' allows us to pass content to this mixin.
     }
   }
 
   @if $breakpoint == tab-land {
-    @media (max-width: 1200px) {
+    @media (max-width: 75em) { // 1200px
       @content // This '@content' allows us to pass content to this mixin.
     }
   }
@@ -68,7 +75,7 @@
   // For screens larger than 1800px
   //@if($breakpoint == 'big-desktop') { This also works and correct.
   @if $breakpoint == big-desktop {
-    @media (min-width: 1800px) {
+    @media (min-width: 112.5em) { // 1800px
       @content // This '@content' allows us to pass content to this mixin.
     }
   }

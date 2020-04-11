@@ -10,7 +10,10 @@
 }
 
 html {
-  // This defines what is 1 rem is. 62.5% --> 1rem -> 10px
+
+  // This defines what is 1 rem is.
+  // Default font size 16px for browsers, 16*62.5% = 10px
+  // 62.5% --> 1rem -> 10px
   font-size: 62.5%;
 
   //@include respond-phone {
@@ -19,13 +22,24 @@ html {
   // Without doing like this we use the follow commong manger to generate media queries
   // Based on the passed screen type. (i.e 'phone')
 
-  @include respond(phone) {
-    font-size: 38%;
+  @include respond(tab-land) {
+    font-size: 56.25%; // 1 rem = 9px , 9/16 - 56.25%
   }
 
   //@include respond('tab-port') { - This also works and correct.
   @include respond(tab-port) {
-    font-size: 48%;
+    font-size: 50%; // 1 rem = 8px , 8/16 - 50%
+  }
+
+  @include respond(phone) {
+    font-size: 50%; // 1 rem = 8px , 8/16 - 50%
+    //  Since both tab-port and phone has the same size, we can remove this one.
+    //  because this is cover by the tab-port media query as it's a max-width media query.
+    //  But keeping this, later if we decide to reduce the size it will be easy.
+  }
+
+  @include respond(big-desktop) {
+    font-size: 75%; // 1 rem = 12px , 12/16 - 75%
   }
 }
 
