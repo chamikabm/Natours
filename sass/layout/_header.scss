@@ -5,12 +5,46 @@
                   to right bottom,
                   rgba($color-primary-light, 0.8),
                   rgba($color-primary-dark, 0.8)),
-  url('../../img/hero.jpg');
+  url('../../img/hero-small.jpg'); // For normal resolution screens (i.e min-resolution: 192dpi less than 192dpi screens) or screen size is lower than 600px.
   background-size: cover;
   background-position: top;
   position: relative;
   -webkit-clip-path: polygon(0 0,100% 0,100% 75vh,0 100%); // Chrome, Safari
   clip-path: polygon(0 0,100% 0,100% 75vh,0 100%); // Firefox
+
+  // Load the larger image if the screen is a high res one and larger then 600px.
+  // This media query used to target screen resolutions.
+  // We are using 192dpi value, which is the apple retina screen.
+  //@media (min-resolution: 192dpi) and (min-width: 600px) { // Applicable for screens whose resolution is 192dpi or higher and larger than 600px.
+  //  background-image: linear-gradient(
+  //                  to right bottom,
+  //                  rgba($color-primary-light, 0.8),
+  //                  rgba($color-primary-dark, 0.8)),
+  //                  url('../../img/hero.jpg');
+  //}
+
+  // Load larger image for larger screen, even if the screen resolution is low.
+  //@media (min-width: 2000px) {
+  //  background-image: linear-gradient(
+  //                  to right bottom,
+  //                  rgba($color-primary-light, 0.8),
+  //                  rgba($color-primary-dark, 0.8)),
+  //                  url('../../img/hero.jpg');
+  //}
+
+  // We can combine above two media queries like this since the internal content is same
+  // for the both :
+  @media (min-resolution: 192dpi) and (min-width: 37.5em), // 37.5em == 600px
+         (min-width: 125em) { // 125em = 2000px
+            background-image: linear-gradient(
+                            to right bottom,
+                            rgba($color-primary-light, 0.8),
+                            rgba($color-primary-dark, 0.8)),
+                            url('../../img/hero.jpg');
+  }
+
+
+
 
   @include respond(phone) {
     -webkit-clip-path: polygon(0 0,100% 0,100% 85vh,0 100%); // Chrome, Safari

@@ -420,7 +420,7 @@
 <!--
     Lecture 61:
     NOTE for Art Direction:
-    **Art direction is the way of showing different images on diffrent screen sizes.
+    **Art direction is the way of showing different images on different screen sizes.
     In order to achieve that we can make use of HTML "picture" tag with "source" and "img" tags.
 -->
 <!--
@@ -442,7 +442,14 @@
                         <!--  We can specify multiple sources for an image as below.  -->
                         <source srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x"
                                 media="(max-width: 37.5em)"> <!-- use specified image if max-width: 600px(37.5em) -->
+
+                        <!--
+                            This "src" property in the img tag, only will use if the browser does not
+                            understand the "srcset" property. (i.e:  since "srcset" is a new css tag,
+                            it will not be recognized by the old browsers.)
+                        -->
                         <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x"
+                             src="img/logo-green-2x.png"
                              alt="Full logo"
                              class="footer__logo">
                     </picture>
