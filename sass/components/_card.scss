@@ -12,7 +12,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    --webkit-backface-visibility: hidden; // Chrome, Safari - When rotates this will not show the backside.
+    -webkit-backface-visibility: hidden; // Chrome, Safari - When rotates this will not show the backside.
     backface-visibility: hidden; // When rotates this will not show the backside.
     border-radius: 3px;
     box-shadow: 0 1.5rem 40px rgba(0,0,0, .15);
