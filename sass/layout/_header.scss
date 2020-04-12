@@ -1,6 +1,6 @@
 
 .header {
-  height: 95vh;
+  height: 85vh;
   background-image: linear-gradient(
                   to right bottom,
                   rgba($color-primary-light, 0.8),
@@ -9,8 +9,30 @@
   background-size: cover;
   background-position: top;
   position: relative;
-  -webkit-clip-path: polygon(0 0,100% 0,100% 75vh,0 100%); // Chrome, Safari
-  clip-path: polygon(0 0,100% 0,100% 75vh,0 100%); // Firefox
+
+  /*
+   Moved this code to the "supports" query as this is not work in some browsers yet.
+   So that we need to have a default behaviour if the clip path is not working in
+   browsers and we will have additional behavior inside "supports" query if the below
+   properties are supported by the browser version.
+   */
+  //-webkit-clip-path: polygon(0 0,100% 0,100% 75vh,0 100%); // Chrome, Safari
+  //clip-path: polygon(0 0,100% 0,100% 75vh,0 100%); // Firefox
+
+  /*
+   We don't need to put exact values to the indicated properties, here with "supports" query we are
+   trying to test whether the mentioned property is working or not in the loaded browser. To
+   test that we can put any value we want.
+   i.e : clip-path: polygon(0 0,100% 0,100% 75vh,0 100%); for this one, we can use
+   clip-path: polygon(0 0) with "supports" query to test and see if the feature is working on
+   the browser. If the code is working then we can apply the relevant code inside the "supports" block.
+
+   */
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    -webkit-clip-path: polygon(0 0,100% 0,100% 75vh,0 100%); // Chrome, Safari
+    clip-path: polygon(0 0,100% 0,100% 75vh,0 100%); // Firefox
+    height: 95vh;
+  }
 
   // Load the larger image if the screen is a high res one and larger then 600px.
   // This media query used to target screen resolutions.
@@ -35,6 +57,7 @@
   // We can combine above two media queries like this since the internal content is same
   // for the both :
   @media (min-resolution: 192dpi) and (min-width: 37.5em), // 37.5em == 600px
+         (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), // "(min-resolution: 192dpi) and (min-width: 37.5em)" is not work for safari, hence we need to add this "-webkit-min-device-pixel-ratio" property with 2. Here 2 is the 2x(Device pixel ratio).
          (min-width: 125em) { // 125em = 2000px
             background-image: linear-gradient(
                             to right bottom,

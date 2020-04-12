@@ -17,16 +17,26 @@
     width: 15rem;
     height: 15rem;
     float: left;
-    //circle(input1, input2); --> circle( [<shape-radius>]? [at <position>]? ) position --> https://developer.mozilla.org/en-US/docs/Web/CSS/position_value
-    // input1- radius of the circle (i.e if we say 50%, then it will be half of the height and the width[15rem])
-    // input2- position
-    // In order to work the "shape-outside" property you need to set the element to float.
-    -webkit-shape-outside: circle(50% at 50% 50%); // Chrome safari
-    shape-outside: circle(50% at 50% 50%); // Firefox
-    -webkit-clip-path:  circle(50% at 50% 50%);
-    clip-path:  circle(50% at 50% 50%);
     transform: translateX(-3rem) skewX(12deg);
     position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+      -webkit-clip-path:  circle(50% at 50% 50%); // Chrome, safari
+      clip-path:  circle(50% at 50% 50%);// Firefox
+
+      // ---> Ideally below code should be on a separate supports query, but we assume that
+      // if the browser does not support clip-path property we don't this to happen as well.
+
+      //circle(input1, input2); --> circle( [<shape-radius>]? [at <position>]? ) position --> https://developer.mozilla.org/en-US/docs/Web/CSS/position_value
+      // input1- radius of the circle (i.e if we say 50%, then it will be half of the height and the width[15rem])
+      // input2- position
+      // In order to work the "shape-outside" property you need to set the element to float.
+      -webkit-shape-outside: circle(50% at 50% 50%); // Chrome, safari
+      shape-outside: circle(50% at 50% 50%); // Firefox
+      border-radius: 0;
+    }
 
 
     @include respond(phone) {

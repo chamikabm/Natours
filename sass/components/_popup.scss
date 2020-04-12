@@ -11,6 +11,26 @@
   opacity: 0;
   visibility: hidden;
 
+  /*
+   NOTE: Graceful Degradation  Example:
+   s
+   We can use "supports" to test certain properties on a browser and, it it is working
+   then we can ask to apply the code inside the "supports" block. That way we can design
+   default behaviour in top and we can override new features inside the "supports" block.
+
+   In this example we have added "backdrop" filter, which is for the moment only works for
+   the safari, not in google chrome. So that we can test the backdrop property and if it is
+   working then the code inside supports will get applied.
+
+   If not above "background-color: rgba($color-black, .8);" will get applied.
+   */
+
+  @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    -webkit-backdrop-filter: blur(10px); // For Chrome and Safari
+    backdrop-filter: blur(10px);
+    background-color: rgba($color-black, .3); // Override the above "background-color: rgba($color-black, .8);"
+  }
+
   transition: all .3s;
 
   &__content  {

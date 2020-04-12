@@ -332,6 +332,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
+    --webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 3px;
     box-shadow: 0 1.5rem 40px rgba(0, 0, 0, 0.15);
@@ -459,12 +460,17 @@ body {
     width: 15rem;
     height: 15rem;
     float: left;
-    -webkit-shape-outside: circle(50% at 50% 50%);
-    shape-outside: circle(50% at 50% 50%);
-    -webkit-clip-path: circle(50% at 50% 50%);
-    clip-path: circle(50% at 50% 50%);
     transform: translateX(-3rem) skewX(12deg);
-    position: relative; }
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%; }
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+      .story__shape {
+        -webkit-clip-path: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+        border-radius: 0; } }
     @media (max-width: 37.5em) {
       .story__shape {
         transform: translateX(-3rem) skewX(0); } }
@@ -602,7 +608,25 @@ body {
   z-index: 9999;
   opacity: 0;
   visibility: hidden;
+  /*
+   NOTE: Graceful Degradation  Example:
+   s
+   We can use "supports" to test certain properties on a browser and, it it is working
+   then we can ask to apply the code inside the "supports" block. That way we can design
+   default behaviour in top and we can override new features inside the "supports" block.
+
+   In this example we have added "backdrop" filter, which is for the moment only works for
+   the safari, not in google chrome. So that we can test the backdrop property and if it is
+   working then the code inside supports will get applied.
+
+   If not above "background-color: rgba($color-black, .8);" will get applied.
+   */
   transition: all .3s; }
+  @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    .popup {
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      background-color: rgba(0, 0, 0, 0.3); } }
   .popup__content {
     position: absolute;
     top: 50%;
@@ -664,14 +688,32 @@ body {
     color: #55c57a; }
 
 .header {
-  height: 95vh;
+  height: 85vh;
   background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../../img/hero-small.jpg");
   background-size: cover;
   background-position: top;
   position: relative;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
-  @media (min-resolution: 192dpi) {
+  /*
+   Moved this code to the "supports" query as this is not work in some browsers yet.
+   So that we need to have a default behaviour if the clip path is not working in
+   browsers and we will have additional behavior inside "supports" query if the below
+   properties are supported by the browser version.
+   */
+  /*
+   We don't need to put exact values to the indicated properties, here with "supports" query we are
+   trying to test whether the mentioned property is working or not in the loaded browser. To
+   test that we can put any value we want.
+   i.e : clip-path: polygon(0 0,100% 0,100% 75vh,0 100%); for this one, we can use
+   clip-path: polygon(0 0) with "supports" query to test and see if the feature is working on
+   the browser. If the code is working then we can apply the relevant code inside the "supports" block.
+
+   */ }
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    .header {
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+      height: 95vh; } }
+  @media (min-resolution: 192dpi) and (min-width: 37.5em), (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), (min-width: 125em) {
     .header {
       background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../../img/hero.jpg"); } }
   @media (max-width: 37.5em) {
