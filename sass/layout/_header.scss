@@ -56,9 +56,9 @@
 
   // We can combine above two media queries like this since the internal content is same
   // for the both :
-  @media (min-resolution: 192dpi) and (min-width: 37.5em), // 37.5em == 600px
-         (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), // "(min-resolution: 192dpi) and (min-width: 37.5em)" is not work for safari, hence we need to add this "-webkit-min-device-pixel-ratio" property with 2. Here 2 is the 2x(Device pixel ratio).
-         (min-width: 125em) { // 125em = 2000px
+  @media  only screen and (min-resolution: 192dpi) and (min-width: 37.5em), // 37.5em == 600px
+          only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em), // "(min-resolution: 192dpi) and (min-width: 37.5em)" is not work for safari, hence we need to add this "-webkit-min-device-pixel-ratio" property with 2. Here 2 is the 2x(Device pixel ratio).
+          only screen and (min-width: 125em) { // 125em = 2000px
             background-image: linear-gradient(
                             to right bottom,
                             rgba($color-primary-light, 0.8),

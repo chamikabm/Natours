@@ -58,19 +58,34 @@
 
   @if $breakpoint == phone {
 
-    @media (max-width: 37.5em) { // 600px
+    /*
+       We can use like this @media (max-width: 37.5em) but, the best practise is to use
+       with the "only screen and" condition, which specifies the browsers to apply these
+       only to screens. (i.e : If someone tries to print the web page, these media queries will not apply)
+
+       https://www.w3schools.com/cssref/css3_pr_mediaquery.asp
+
+       Use media queries to specify that certain styles are only for printed documents or for screen readers
+        (mediatype: print, screen, or speech).
+
+      CSS Syntax:
+       @media not|only mediatype and (mediafeature and|or|not mediafeature) {
+          CSS-Code;
+       }
+     */
+    @media only screen and (max-width: 37.5em) { // 600px
       @content // This '@content' allows us to pass content to this mixin.
     }
   }
 
   @if $breakpoint == tab-port {
-    @media (max-width: 56.25em) { // 900px
+    @media only screen and (max-width: 56.25em) { // 900px
       @content // This '@content' allows us to pass content to this mixin.
     }
   }
 
   @if $breakpoint == tab-land {
-    @media (max-width: 75em) { // 1200px
+    @media only screen and (max-width: 75em) { // 1200px
       @content // This '@content' allows us to pass content to this mixin.
     }
   }
@@ -78,7 +93,7 @@
   // For screens larger than 1800px
   //@if($breakpoint == 'big-desktop') { This also works and correct.
   @if $breakpoint == big-desktop {
-    @media (min-width: 112.5em) { // 1800px
+    @media only screen and (min-width: 112.5em) { // 1800px
       @content // This '@content' allows us to pass content to this mixin.
     }
   }

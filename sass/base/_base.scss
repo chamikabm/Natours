@@ -51,3 +51,10 @@ body {
     padding: 0;
   }
 }
+
+// This pseudo element used to catch the element when select to some part in the web page.
+// (i.e: When selecting paragraph text, selecting headers etc.)
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}

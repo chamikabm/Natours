@@ -174,9 +174,33 @@
   }
 
 
+  /*
 
-  @include respond(tab-port) {
+   NOTE: Supporting Touch Devices
+   ------------------------------
 
+   Most of the devices below "@include respond(tab-port) [i.e : (max-width: 56.25em)]"
+   screen size are touch devices. Hence we won't be able to see the hover animation
+   and the content on the backside of the card upon hover, so that we need to add a
+   different styles for those devices.
+   --> We can capture those devices with: @media only screen and (max-width: 56.25em)
+
+   Also there are some devices which has larger screen size (i.e > max-width: 56.25em)
+   and touch, so those devices won't be able to see the hover animation. Because of that
+   we need to have the same styling for those devices as well.
+   --> We can capture those devices with: @media only screen and (hover: none)
+
+   So, we can combine both the "media" queries as below:
+
+    @media only screen and (max-width: 56.25em),
+           only screen and (hover: none) {
+            // Styles for touch devices.
+         }
+   */
+
+  // @include respond(tab-port) { We have to use a custom media query as below, as we need to select the touch devices.
+  @media only screen and (max-width: 56.25em),
+         only screen and (hover: none) { // Apply this style if the devices is a touch device irrespective of the screen size.
     height: auto;
     border-radius: 3px;
     background-color: $color-white;
