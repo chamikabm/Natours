@@ -40,7 +40,7 @@
     box-shadow: 0 2rem 4rem rgba($color-black, .2);
     border-radius: 3px;
     overflow: hidden; // This will be used to hide the overflowed image from above border radius.
-    transition: translate .4s .2s; // Last .2s is the delay
+    transition: all .4s .2s; // Last .2s is the delay
 
     // We use are simulating a table without floats in order to keep both left and
     // right sections heights are same.
